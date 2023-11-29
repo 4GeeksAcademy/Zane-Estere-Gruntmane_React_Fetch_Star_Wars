@@ -1,45 +1,63 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			people: [],
+			planets: [],
+			starships: [], 
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+
+			getGrid: async () => {
+				const store = getStore();
+				
+				const response = await fetch("https://www.swapi.tech/api/");
+				const jsonResponse = await response.json();
+				console.log(jsonResponse)
+				setStore({ store: jsonResponse });
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			
+			getPeopleDetails: async () => { 
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				const newPeopleWithDetails = await Promise.all (store.people.map (async (people) => { 
+				const textresponse = await fetch(people.url);
+				const jsonResponse = await textresponse.json();
+				
+				return { ... people, details: jsonResponse.result }; 
 
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			}))
+				setStore({ ...store, people: newPeopleWithDetails  });
+			},
+
+			getPlanetsDetails: async () => { 
+				const store = getStore();
+				
+				const newPlanetsWithDetails = await Promise.all (store.planets.map(async (planet) => { 
+				const textresponse = await fetch(planet.url);
+				const jsonResponse = await textresponse.json();
+				
+				return { ... planet, details: jsonResponse.result };
+			}))
+			setStore  ({ ... store, planets: newPlanetsWithDetails}); 
+			},
+
+
+			getStarshipsDetails: async () => { 
+				const store = getStore();
+				
+				const newStarshipWithDetails = await Promise.all (store.starships.map (async (starship) =>{ 
+
+				const textresponse = await fetch (starship.url);
+				const jsonResponse = await textresponse.json();
+				
+				return {... starship, details: jsonResponse.result}; 
+
+			}))
+				setStore({ ...store, starships: newStarshipWithDetails });
+			},
+
 		}
-	};
+	}
 };
-
 export default getState;
