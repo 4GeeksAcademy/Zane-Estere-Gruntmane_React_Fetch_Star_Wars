@@ -1,60 +1,37 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			url: ("https://www.swapi.tech/api/"),
+
 			people: [],
 			planets: [],
-			starships: [], 
+			starships: [],
 
 		},
 		actions: {
 
-			getGrid: async () => {
-				const store = getStore();
-				
-				const response = await fetch("https://www.swapi.tech/api/");
-				const jsonResponse = await response.json();
-				console.log(jsonResponse)
-				setStore({ store: jsonResponse });
-			},
-			
-			getPeopleDetails: async () => { 
-				const store = getStore();
 
-				const newPeopleWithDetails = await Promise.all (store.people.map (async (people) => { 
-				const textresponse = await fetch(people.url);
+
+			getPeople: async () => {
+				const store = getStore();
+				const textresponse = await fetch(store.url + "people");
 				const jsonResponse = await textresponse.json();
-				
-				return { ... people, details: jsonResponse.result }; 
-
-			}))
-				setStore({ ...store, people: newPeopleWithDetails  });
+				setStore({ ...store, people: jsonResponse.results });
 			},
 
-			getPlanetsDetails: async () => { 
+			getPlanets: async () => {
 				const store = getStore();
-				
-				const newPlanetsWithDetails = await Promise.all (store.planets.map(async (planet) => { 
-				const textresponse = await fetch(planet.url);
+				const textresponse = await fetch(store.url + "planets");
 				const jsonResponse = await textresponse.json();
-				
-				return { ... planet, details: jsonResponse.result };
-			}))
-			setStore  ({ ... store, planets: newPlanetsWithDetails}); 
+				setStore({ ...store, planets: jsonResponse.results });
 			},
 
 
-			getStarshipsDetails: async () => { 
+			getStarships: async () => {
 				const store = getStore();
-				
-				const newStarshipWithDetails = await Promise.all (store.starships.map (async (starship) =>{ 
-
-				const textresponse = await fetch (starship.url);
+				const textresponse = await fetch(store.url + "starships");
 				const jsonResponse = await textresponse.json();
-				
-				return {... starship, details: jsonResponse.result}; 
-
-			}))
-				setStore({ ...store, starships: newStarshipWithDetails });
+				setStore({ ...store, starships: jsonResponse.results });
 			},
 
 		}
