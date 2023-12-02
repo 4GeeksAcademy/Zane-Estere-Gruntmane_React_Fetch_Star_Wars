@@ -6,10 +6,25 @@ import { Context } from "../store/appContext";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
+	const handleInitialData = async () => {
 		actions.getPeople();
 		actions.getPlanets();
 		actions.getStarships();
+
+	}
+
+	const handleFetchDetails = async () => {
+		actions.getPeopleDetails();
+	}
+
+	const handleAsyncCalls = async () => {
+		await handleInitialData();
+		await handleFetchDetails();
+
+	}
+
+	useEffect(() => {
+		handleAsyncCalls()
 	}, [])
 
 	console.log(store)

@@ -1,3 +1,5 @@
+import { json } from "react-router";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -34,7 +36,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ ...store, starships: jsonResponse.results });
 			},
 
+			getNewPeopleDetails: async () => {
+				const store = getStore();
+				const peopleDetails = store.people.map(async (person) => {
+					const textresponse = await fetch(store.url + "people" + "person.url");
+					const jsonResponse = await textresponse.json();
+					return { ...person, details: jsonResponse.results };
+				})
+				setStore({ ...store, person: newPeopleDetails });
+			},
 		}
+
 	}
 };
 export default getState;
