@@ -38,11 +38,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getNewPeopleDetails: async () => {
 				const store = getStore();
-				const peopleDetails = store.people.map(async (person) => {
+				const peopleDetails = await Promise.all(store.people.map(async (person) => {
 					const textresponse = await fetch(store.url + "people" + "person.url");
 					const jsonResponse = await textresponse.json();
-					return { ...person, details: jsonResponse.results };
-				})
+					return { ...person, details: jsonResponse.result };
+				}))
 				setStore({ ...store, person: newPeopleDetails });
 			},
 		}

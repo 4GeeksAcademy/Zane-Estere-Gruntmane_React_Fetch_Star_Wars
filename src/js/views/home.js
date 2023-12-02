@@ -7,15 +7,15 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	const handleInitialData = async () => {
-		actions.getPeople();
-		actions.getPlanets();
-		actions.getStarships();
+		await actions.getPeople();
+		await actions.getPlanets();
+		await actions.getStarships();
 
 	}
 
 	const handleFetchDetails = async () => {
-		actions.getPeopleDetails();
-	}
+		await actions.getNewPeopleDetails();
+	};
 
 	const handleAsyncCalls = async () => {
 		await handleInitialData();
@@ -28,14 +28,17 @@ export const Home = () => {
 	}, [])
 
 	console.log(store)
+
 	return (
 		< div className="text-center mt-5" >
 			<h1> Hello Starwars!</h1>
 			<div>
 				<div> <h2> People:  </h2>
 					{store.people.map((person) => {
-						return <p key={person.uid}>{person.name}</p>
-						birth_year
+						<div key={person.uid}>
+							<p>{person.name}</p>
+							{person.details && person.details.properties && (<p key={person.uid}> Height: {person.details.properties.gender}</p>)}
+						</div>
 					})}</div>
 
 				<div> <h2>Planets: </h2>
