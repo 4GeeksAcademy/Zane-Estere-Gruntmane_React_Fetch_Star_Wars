@@ -16,34 +16,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getPeople: async () => {
 				const store = getStore();
-				const textresponse = await fetch(store.url + "people");
-				const jsonResponse = await textresponse.json();
+				const textResponse = await fetch(store.url + "people");
+				const jsonResponse = await textResponse.json();
 				setStore({ ...store, people: jsonResponse.results });
 			},
 
 			getPlanets: async () => {
 				const store = getStore();
-				const textresponse = await fetch(store.url + "planets");
-				const jsonResponse = await textresponse.json();
+				const textResponse = await fetch(store.url + "planets");
+				const jsonResponse = await textResponse.json();
 				setStore({ ...store, planets: jsonResponse.results });
 			},
 
 
 			getStarships: async () => {
 				const store = getStore();
-				const textresponse = await fetch(store.url + "starships");
-				const jsonResponse = await textresponse.json();
+				const textResponse = await fetch(store.url + "starships");
+				const jsonResponse = await textResponse.json();
 				setStore({ ...store, starships: jsonResponse.results });
 			},
 
 			getNewPeopleDetails: async () => {
 				const store = getStore();
-				const peopleDetails = await Promise.all(store.people.map(async (person) => {
-					const textresponse = await fetch(store.url + "people" + "person.url");
-					const jsonResponse = await textresponse.json();
+				const newPeopleDetails = await Promise.all(store.people.map(async (person) => {
+					const textResponse = await fetch(person.url);
+					const jsonResponse = await textResponse.json();
 					return { ...person, details: jsonResponse.result };
-				}))
-				setStore({ ...store, person: newPeopleDetails });
+				}));
+				setStore({ ...store, people: newPeopleDetails });
+			},
+
+
+			getNewPlanetsDetails: async () => {
+				const store = getStore();
+				const newPlanetsDetails = await Promise.all(store.planets.map(async (planet) => {
+					const textResponse = await fetch(planet.url);
+					const jsonResponse = await textResponse.json();
+					return { ...planet, details: jsonResponse.result };
+				}));
+				setStore({ ...store, planets: newPlanetsDetails });
+			},
+
+			getNewStarshipsDetails: async () => {
+				const store = getStore();
+				const NewStarshipsDetails = await Promise.all(store.starships.map(async (starship) => {
+					const textResponse = await fetch(starship.url);
+					const jsonResponse = await textResponse.json();
+					return { ...starship, details: jsonResponse.result };
+				}));
+				setStore({ ...store, starships: NewStarshipsDetails });
 			},
 		}
 
