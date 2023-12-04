@@ -15,21 +15,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			getPeople: async () => {
+				console.log("getPeople");
 				const store = getStore();
 				const textResponse = await fetch(store.url + "people");
 				const jsonResponse = await textResponse.json();
 				setStore({ ...store, people: jsonResponse.results });
+
 			},
 
+
 			getPlanets: async () => {
+				console.log("getPlanet");
 				const store = getStore();
 				const textResponse = await fetch(store.url + "planets");
 				const jsonResponse = await textResponse.json();
 				setStore({ ...store, planets: jsonResponse.results });
+
 			},
 
 
 			getStarships: async () => {
+				console.log("getStarships");
 				const store = getStore();
 				const textResponse = await fetch(store.url + "starships");
 				const jsonResponse = await textResponse.json();

@@ -23,8 +23,9 @@ export const Navbar = () => {
 			<div className="ml-auto">
 
 				<i className="fa-solid fa-magnifying-glass me-4" style={{ color: "#f5f5f5" }} ></i>
-				<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }}></i>
-
+				<Link to="/">
+					<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }}></i>
+				</Link>
 			</div>
 		</nav >
 	)
