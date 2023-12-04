@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export const Home = (people, planets, starships) => {
 	const { store, actions } = useContext(Context);
-	const { isLoading, setIsLoading } = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleInitialData = async () => {
 		console.log("handleInitialData");
@@ -33,7 +33,7 @@ export const Home = (people, planets, starships) => {
 	}
 
 	useEffect(() => {
-		handleAsyncCalls()
+		handleAsyncCalls();
 	}, [])
 
 
