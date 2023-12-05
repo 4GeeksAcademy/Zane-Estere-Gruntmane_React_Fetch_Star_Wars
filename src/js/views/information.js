@@ -12,52 +12,53 @@ export const Information = ({ type, ...data }) => {
 	const entityData = store[kind].find(entity => entity.uid === uid);
 
 	console.log("entityData", entityData);
+
 	return (
+
 		<div className="entityData card text-center ms-5 me-5 " style={{ background: "rgb(154, 139, 139)" }}>
 
 			<div className="text-center">
 				<div className="card-header">
-					{entityData}
+					<p> Learn More about the Star Wars </p>
 				</div>
 
 				<div className="card-body">
 					<h5 className="title">{entityData.name}</h5>
 					{kind === "people" && (
 						<>
-							<p>Colours:</p>
+
 							<p>{entityData.details.properties.hair_color}</p>
 							<p>{entityData.details.properties.skin_color}</p>
 							<p>{entityData.details.properties.eye_color}</p>
 						</>
-					)}; 
+					)};
 
 					{kind === "planets" && (
 						<>
-							<p></p>
+
 							<p>{entityData.details.properties.rotation_period}</p>
 							<p>{entityData.details.properties.orbital_period}</p>
 							<p>{entityData.details.properties.gravity}</p>
 							<p>{entityData.details.properties.terrain} </p>
 							<p>{entityData.details.properties.surface_water}</p>
 						</>
-					)}	
+					)}
 
 					{kind === "starships" && (
 						<>
-							<p>Colours:</p>
-							<p>{entityData.details.properties.rotation_period}</p>
-							<p>{entityData.details.properties.orbital_period}</p>
-							<p>{entityData.details.properties.gravity}</p>
-							<p>{entityData.details.properties.terrain} </p>
-							<p>{entityData.details.properties.surface_water}</p>
+
+							<p>{entityData.details.properties.starship_class}</p>
+							<p>{entityData.details.properties.length}</p>
+							<p>{entityData.details.properties.passengers}</p>
+							<p>{entityData.details.properties.max_atmosphering_speed} </p>
 						</>
-					)}	
+					)}
 				</div>
 
 			</div>
 
 			<div className="card-footer">
-				2 days ago
+				star wars crew
 			</div>
 
 		</div>
