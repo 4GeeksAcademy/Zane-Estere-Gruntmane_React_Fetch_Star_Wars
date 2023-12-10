@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			url: ("https://www.swapi.tech/api/"),
+			favorites: [],
 
 			people: [],
 			planets: [],
@@ -16,7 +17,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getPeople: async () => {
 				console.log("getPeople");
-				const store = getStore();
+				const store = getStore(); 
 				const textResponse = await fetch(store.url + "people");
 				const jsonResponse = await textResponse.json();
 				setStore({ ...store, people: jsonResponse.results });
@@ -71,6 +72,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return { ...starship, details: jsonResponse.result };
 				}));
 				setStore({ ...store, starships: NewStarshipsDetails });
+			},
+
+			delFavorite: (kind) => {
+				let aux = getStore().favorites.filter(el => el != kind)
+				setStore({ favorites: aux })
+			},
+			addRemoveFav: (kind) => {
+				if (getStore().favorites.length > 0) {
+					getStore().favorites.includes(kind) ? getActions().delFavorite(kind)
+						: setStore({ favorites: [...getStore().favorites, kind] })
+				} else {
+					setStore({ favorites: [kind] })
+				}
 			},
 
 		}

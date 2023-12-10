@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const handleDeleteFav = char => {
+		actions.delFavorite(char)
+	};
+
 	return (
 		<nav className="navbar mb-3" style={{ backgroundColor: 'rgb(0, 0, 0)', color: 'rgb (245, 245, 245)' }}>
 			<Link to="/">
@@ -12,6 +18,7 @@ export const Navbar = () => {
 					<i className="fa-brands fa-square-youtube me-2"></i>
 				</span>
 			</Link>
+
 			<img
 				className="logo"
 				id="local-nav-logo-desktop"
@@ -20,9 +27,13 @@ export const Navbar = () => {
 				style={{ width: "10rem", textAlign: 'center' }}
 			/>
 
+
 			<div className="ml-auto">
 
-				<i className="fa-regular fa-star me-4" style={{ color: "#f5f5f5" }} ></i>
+				<button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<i className="fa-regular fa-star me-4 ms-1" style={{ color: "#f5f5f5" }} > </i> {store.favorites.length}
+					{store.favorites.length > 0 ? store.favorites.map((el, i) => <li key={i}>{el.name} <span onClick={() => handleDeleteFav(el)}>X</span></li>) : ""}
+				</button>
 				<i className="fa-solid fa-magnifying-glass me-4" style={{ color: "#f5f5f5" }} ></i>
 				<Link to="/">
 					<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }}></i>

@@ -130,9 +130,8 @@ export const Home = (people, planets, starships) => {
 										</div>
 
 										<div>
-											<Link to={`/information/starships/${starship.uid}`}>
 												<MyButton />
-											</Link>
+											
 										</div>
 									</div>
 								</div>

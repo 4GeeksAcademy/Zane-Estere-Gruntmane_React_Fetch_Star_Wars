@@ -11,7 +11,7 @@ export const Information = ({ type, ...data }) => {
 
 	const entityData = store[kind].find(entity => entity.uid === uid);
 
-	console.log("entityData", entityData);
+	console.log("entityData", entityData)
 
 	return (
 
@@ -19,38 +19,49 @@ export const Information = ({ type, ...data }) => {
 
 			<div className="text-center">
 				<div className="card-header">
-					<p> Learn More about the Star Wars </p>
+					<h2 className="text-warning"> more:
+						<img
+							className="logo ms-3 "
+							id="starwars more"
+							src="https://logodownload.org/wp-content/uploads/2015/12/star-wars-logo-3-1.png"
+							alt="Star Wars Logo"
+							style={{ width: '7rem', textAlign: 'center' }}
+						/>
+
+					</h2>
+
 				</div>
 
 				<div className="card-body">
-					<h5 className="title">{entityData.name}</h5>
-					{kind === "people" && (
-						<>
 
-							<p>{entityData.details.properties.hair_color}</p>
-							<p>{entityData.details.properties.skin_color}</p>
-							<p>{entityData.details.properties.eye_color}</p>
+					{kind === "people" && (
+
+						<>
+							<h5 className="title">{entityData.name}</h5>
+							<p>HAIR: {entityData.details.properties.hair_color}</p>
+							<p>SKIN: {entityData.details.properties.skin_color}</p>
+							<p>EYES: {entityData.details.properties.eye_color}</p>
 						</>
-					)};
+					)}
 
 					{kind === "planets" && (
 						<>
-
-							<p>{entityData.details.properties.rotation_period}</p>
-							<p>{entityData.details.properties.orbital_period}</p>
-							<p>{entityData.details.properties.gravity}</p>
-							<p>{entityData.details.properties.terrain} </p>
-							<p>{entityData.details.properties.surface_water}</p>
+							<h5 className="title">{entityData.name}</h5>
+							<p>Rotation period: {entityData.details.properties.rotation_period}</p>
+							<p>Orbital period: {entityData.details.properties.orbital_period}</p>
+							<p>Gravity: {entityData.details.properties.gravity}</p>
+							<p>Terrain:  {entityData.details.properties.terrain} </p>
+							<p>Surface water: {entityData.details.properties.surface_water}</p>
 						</>
 					)}
 
 					{kind === "starships" && (
 						<>
-
-							<p>{entityData.details.properties.starship_class}</p>
-							<p>{entityData.details.properties.length}</p>
-							<p>{entityData.details.properties.passengers}</p>
-							<p>{entityData.details.properties.max_atmosphering_speed} </p>
+							<h5 className="title">{entityData.name}</h5>
+							<p>Class: {entityData.details.properties.starship_class}</p>
+							<p>Length: {entityData.details.properties.length}</p>
+							<p>Passengers: {entityData.details.properties.passengers}</p>
+							<p>Max atmosphering speed: {entityData.details.properties.max_atmosphering_speed} </p>
 						</>
 					)}
 				</div>
@@ -58,7 +69,41 @@ export const Information = ({ type, ...data }) => {
 			</div>
 
 			<div className="card-footer">
-				star wars crew
+
+
+				<img
+					className="starwars movie 1 me-4"
+					id="starwars movies"
+					src="https://lumiere-a.akamaihd.net/v1/images/EP6_POS_21_R-RESIZED_2873dc04.jpeg"
+					alt="Star Wars movie"
+					style={{ width: '7rem', textAlign: "center" }}
+				/>
+
+				<img
+					className="starwars movie 2 me-4"
+					id="starwars movies"
+					src="https://lumiere-a.akamaihd.net/v1/images/p_starwarstheriseofskywalker_18508_3840c966.jpeg"
+					alt="Star Wars movie"
+					style={{ width: '7rem', textAlign: "center" }}
+				/>
+
+
+				<img
+					className="starwars movie 3 me-4"
+					id="starwars movies"
+					src="https://lumiere-a.akamaihd.net/v1/images/EP4_POS_2_D-RESIZED_f977074a.jpeg"
+					alt="Star Wars movie"
+					style={{ width: '7rem', textAlign: "center" }}
+				/>
+
+				<img
+					className="starwars movie 4 me-4"
+					id="starwars movies"
+					src="https://lumiere-a.akamaihd.net/v1/images/EP1-IA-99993-RESIZED_f9ae99b6.jpeg"
+					alt="Star Wars movie"
+					style={{ width: '7rem', textAlign: "center" }}
+				/>
+
 			</div>
 
 		</div>
