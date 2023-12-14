@@ -2,7 +2,6 @@ import React from "react";
 import { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
-import MyButton from "../component/myButton";
 import { Link } from "react-router-dom";
 
 export const Home = (people, planets, starships) => {
@@ -65,9 +64,23 @@ export const Home = (people, planets, starships) => {
 											</div>
 
 											<div>
-												<Link to={`/information/people/${person.uid}`}>
-													<MyButton />
-												</Link>
+
+												<div className="button-wrapper d-flex justify-content-between">
+													<Link to={`/information/people/${person.uid}`}>
+
+														<div className="moreButton">
+															<a href="#" className="btn btn-sm btn-outline-secondary">Learn more</a>
+														</div>
+													</Link>
+													<div className="favoritesButton">
+														<a href="#" className="btn btn-sm btn-outline-secondary">
+															<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(person)}></i>
+														</a>
+													</div>
+												</div>
+
+
+
 											</div>
 
 										</div>
@@ -99,9 +112,22 @@ export const Home = (people, planets, starships) => {
 											)}
 										</div>
 										<div>
-											<Link to={`/information/planets/${planet.uid}`}>
-												<MyButton />
-											</Link>
+
+											<div className="button-wrapper d-flex justify-content-between">
+												<Link to={`/information/planets/${planet.uid}`}>
+
+													<div className="moreButton">
+														<a href="#" className="btn btn-sm btn-outline-secondary">Learn more</a>
+													</div>
+												</Link>
+												<div className="favoritesButton">
+													<a href="#" className="btn btn-sm btn-outline-secondary">
+														<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(planet)}></i>
+													</a>
+												</div>
+											</div>
+
+
 										</div>
 									</div>
 								</div>
@@ -130,8 +156,23 @@ export const Home = (people, planets, starships) => {
 										</div>
 
 										<div>
-												<MyButton />
-											
+
+											<div className="button-wrapper d-flex justify-content-between">
+												<Link to={`/information/starships/${starship.uid}`}>
+
+													<div className="moreButton">
+														<a href="#" className="btn btn-sm btn-outline-secondary">Learn more</a>
+													</div>
+												</Link>
+												<div className="favoritesButton">
+													<a href="#" className="btn btn-sm btn-outline-secondary">
+														<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(starship)}></i>
+													</a>
+												</div>
+											</div>
+
+
+
 										</div>
 									</div>
 								</div>

@@ -4,8 +4,8 @@ import { Context } from "../store/appContext";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	const handleDeleteFav = char => {
-		actions.delFavorite(char)
+	const handleDeleteFav = entityData => {
+		actions.delFavorite(entityData)
 	};
 
 	return (
@@ -32,11 +32,11 @@ export const Navbar = () => {
 
 				<button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<i className="fa-regular fa-star me-4 ms-1" style={{ color: "#f5f5f5" }} > </i> {store.favorites.length}
-					{store.favorites.length > 0 ? store.favorites.map((el, i) => <li key={i}>{el.name} <span onClick={() => handleDeleteFav(el)}>X</span></li>) : ""}
+					{store.favorites.length > 0 ? store.favorites.map((el, i) => <li key={el.uid}>{el.name} <span onClick={() => handleDeleteFav(el)}>  </span></li>) : ""}
 				</button>
 				<i className="fa-solid fa-magnifying-glass me-4" style={{ color: "#f5f5f5" }} ></i>
 				<Link to="/">
-					<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }}></i>
+					<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }} ></i>
 				</Link>
 			</div>
 		</nav >
