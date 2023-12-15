@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export const Home = (people, planets, starships) => {
 	const { store, actions } = useContext(Context);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isFavorite, setFavorite] = useState(false);
 
 	const handleInitialData = async () => {
 		console.log("handleInitialData");
@@ -46,9 +47,9 @@ export const Home = (people, planets, starships) => {
 				<div className="text-start ms-4 me-4 mb-3">
 
 					<h2 className="text-uppercase"> People: </h2>
-					<div className="row">
+					<div className="d-flex overflow-auto">
 						{store.people.map((person) => (
-							<div className="col-sm-4 mb-3 mb-sm-0">
+							<div className="col-sm-4 mb-3 mb-sm-0 ms-2">
 								<div className="card">
 									<div className="card-body">
 										<div key={person.uid}>
@@ -74,7 +75,11 @@ export const Home = (people, planets, starships) => {
 													</Link>
 													<div className="favoritesButton">
 														<a href="#" className="btn btn-sm btn-outline-secondary">
-															<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(person)}></i>
+															<i
+																className={`fa-star ${isFavorite ? 'fa-solid' : 'fa-regular'} my-button`}
+																style={{ color: isFavorite ? '#00ff00' : '#ffea00' }}
+																onClick={() => actions.addRemoveFav(person)}
+															></i>
 														</a>
 													</div>
 												</div>
@@ -96,9 +101,9 @@ export const Home = (people, planets, starships) => {
 
 				<div className="text-start ms-4 me-4 mb-3">
 					<h2 className="text-uppercase">Planets: </h2>
-					<div className="row">
+					<div className="d-flex overflow-auto">
 						{store.planets.map((planet) => (
-							<div className="col-sm-4 mb-3 mb-sm-0">
+							<div className="col-sm-4 mb-3 mb-sm-0 ms-2">
 								<div className="card">
 									<div className="card-body">
 										<div key={planet.uid}>
@@ -122,7 +127,11 @@ export const Home = (people, planets, starships) => {
 												</Link>
 												<div className="favoritesButton">
 													<a href="#" className="btn btn-sm btn-outline-secondary">
-														<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(planet)}></i>
+														<i
+															className={`fa-star ${isFavorite ? 'fa-solid' : 'fa-regular'} my-button`}
+															style={{ color: isFavorite ? '#00ff00' : '#ffea00' }}
+															onClick={() => actions.addRemoveFav(planet)}
+														></i>
 													</a>
 												</div>
 											</div>
@@ -139,9 +148,9 @@ export const Home = (people, planets, starships) => {
 
 				<div className="text-start ms-4 me-4 mb-3">
 					<h2 className="text-uppercase"> Starships: </h2>
-					<div className="row">
+					<div className="d-flex overflow-auto">
 						{store.starships.map((starship) => (
-							<div className="col-sm-4 mb-3 mb-sm-0">
+							<div className="col-sm-4 mb-3 mb-sm-0 ms-2">
 								<div className="card">
 									<div className="card-body">
 										<div key={starship.uid}>
@@ -166,7 +175,12 @@ export const Home = (people, planets, starships) => {
 												</Link>
 												<div className="favoritesButton">
 													<a href="#" className="btn btn-sm btn-outline-secondary">
-														<i className="fa-regular fa-star" style={{ color: "#8f8f8f" }} onClick={() => actions.addRemoveFav(starship)}></i>
+														<i
+															className={`fa-star ${isFavorite ? 'fa-solid' : 'fa-regular'} my-button`}
+															style={{ color: isFavorite ? '#00ff00' : '#ffea00' }}
+															onClick={() => actions.addRemoveFav(starship)}
+														></i>
+
 													</a>
 												</div>
 											</div>
