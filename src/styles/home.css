@@ -2,3 +2,13 @@ body {
     background-color: black;
     color: whitesmoke; 
 }
+
+.favList {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.card-body{ 
+    display: inline-block;
+    overflow-x: auto; 
+}

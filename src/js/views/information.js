@@ -2,7 +2,6 @@ import React from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import "../../styles/information.css";
 
 export const Information = ({ type, ...data }) => {
 	const { store } = useContext(Context);

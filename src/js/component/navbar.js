@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/home.css";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -31,13 +32,19 @@ export const Navbar = () => {
 			<div className="ml-auto">
 
 				<button className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
 					<i className="fa-regular fa-star me-4 ms-1" style={{ color: "#f5f5f5" }} > </i> {store.favorites.length}
-					{store.favorites.length > 0 ? store.favorites.map((el, i) => <li key={el.uid}>{el.name} <span onClick={() => handleDeleteFav(el)}>  </span></li>) : ""}
+					<ul className="favList dropdown-menu dropdown-menu-end">
+						<li>
+							{store.favorites.length > 0 ? store.favorites.map((el, i) => <li key={el.uid}>{el.name} <span onClick={() => handleDeleteFav(el)}>  </span></li>) : ""}
+						</li>
+					</ul>
 				</button>
 				<i className="fa-solid fa-magnifying-glass me-4" style={{ color: "#f5f5f5" }} ></i>
 				<Link to="/">
 					<i className="fa-solid fa-right-to-bracket  me-4" style={{ color: "#f5f5f5" }} ></i>
 				</Link>
+
 			</div>
 		</nav >
 	)
